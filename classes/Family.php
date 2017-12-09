@@ -87,6 +87,22 @@ class Family {
 		return storage()->set('family', $this);
 	}
 
+	public function getMembers($gender = null)
+	{
+		if($gender == null){
+			return $this->members;
+		}
+
+		$members = [];
+		foreach ($this->members as &$member) {
+			if($gender == $member->gender){
+				$members[] = $member;
+			}
+		}
+
+		return $members;
+	}
+
 	public function dd(){
 		dd($this->members);
 	}

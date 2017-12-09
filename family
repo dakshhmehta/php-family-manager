@@ -10,5 +10,6 @@ $application = new Application();
 $application->add(new FeedFamilyCommand());
 $application->add(new MeetTheFamilyCommand());
 $application->add(new AddChildCommand());
+$application->add(new GirlChildCommand());
 
 $application->run();

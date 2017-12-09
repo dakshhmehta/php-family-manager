@@ -10,6 +10,7 @@ return array(
     'BaseCommand' => $baseDir . '/commands/BaseCommand.php',
     'Family' => $baseDir . '/classes/Family.php',
     'FeedFamilyCommand' => $baseDir . '/commands/FeedFamilyCommand.php',
+    'GirlChildCommand' => $baseDir . '/commands/GirlChildCommand.php',
     'MeetTheFamilyCommand' => $baseDir . '/commands/MeetTheFamilyCommand.php',
     'Member' => $baseDir . '/classes/Member.php',
     'Psr\\Cache\\CacheException' => $vendorDir . '/psr/cache/src/CacheException.php',

@@ -46,15 +46,13 @@ class Member {
 
 		foreach ($members as &$m) {
 			if($this->gender == 'M'){
-				if(! $this->getSpouse()) throw Exception("Can not have children without spouse.");
+				if(! $this->getSpouse()) throw new Exception("Can not have children without spouse.");
 
 				$this->spouse->children[] = $m;
 				$m->father = $this;
 				$m->mother = $this->spouse;
 			}
 			else {
-				if(! $this->getSpouse()) throw Exception("Can not have children without spouse.");
-
 				$this->children[] = $m;
 				$m->father = $this->spouse;
 				$m->mother = $this;

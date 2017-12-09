@@ -71,6 +71,7 @@ class ComposerStaticInit6d701f16dfd71c074a2d742ddf5e4c82
         'BaseCommand' => __DIR__ . '/../..' . '/commands/BaseCommand.php',
         'Family' => __DIR__ . '/../..' . '/classes/Family.php',
         'FeedFamilyCommand' => __DIR__ . '/../..' . '/commands/FeedFamilyCommand.php',
+        'GirlChildCommand' => __DIR__ . '/../..' . '/commands/GirlChildCommand.php',
         'MeetTheFamilyCommand' => __DIR__ . '/../..' . '/commands/MeetTheFamilyCommand.php',
         'Member' => __DIR__ . '/../..' . '/classes/Member.php',
         'Psr\\Cache\\CacheException' => __DIR__ . '/..' . '/psr/cache/src/CacheException.php',
