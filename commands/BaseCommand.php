@@ -29,7 +29,12 @@ class BaseCommand extends Command
 		$chika = (new Member("Chika", "F"))->addSpouse("Kpila");
 		$vich = (new Member("Vich", "M"))->addSpouse("Lika")->addChildren([$vila, $chika]);
 
-		$satya = (new Member("Satya", "F"))->addSpouse("Vyan");
+		$satvy = (new Member("Satvy", "F"))->addSpouse("Asva");
+		$kriya = (new Member("Kriya", "M"));
+		$savya = (new Member("Savya", "M"))->addSpouse("Krpi")->addChildren([$kriya]);
+		$misa = (new Member("Misa", "M"));
+		$saayan = (new Member("Saayan", "M"))->addSpouse("Mina")->addChildren([$misa]);
+		$satya = (new Member("Satya", "F"))->addSpouse("Vyan")->addChildren([$satvy, $savya, $saayan]);
 		
 		$shan = (new Member("King Shan", "M"))->addSpouse("Queen Anga")->addChildren([
 			$ish,
@@ -39,7 +44,6 @@ class BaseCommand extends Command
 		]);
 		
 		static::$family = new Family($shan);
-		//static::$family->dd();
 	}
 
 	protected function ask($question){
