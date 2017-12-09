@@ -26,14 +26,14 @@ class Family {
 
 		switch ($relationship) {
 			case 'brothers':
-				$members = $this->findByName($name)->father->findChildrenByGender('M', $name);
+				$members = $this->findByName($name)->mother->findChildrenByGender('M', $name);
 				foreach ($members as &$member) {
 					$__members[] = $member->name;
 				}
 				break;
 			
 			case 'sisters':
-				$members = $this->findByName($name)->father->findChildrenByGender('F', $name);
+				$members = $this->findByName($name)->mother->findChildrenByGender('F', $name);
 				foreach ($members as &$member) {
 					$__members[] = $member->name;
 				}

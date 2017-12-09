@@ -3,8 +3,11 @@
 class Member {
 	public $name;
 	public $gender;
-	public $spouse;
+
 	public $father;
+	public $mother;
+	public $spouse;
+
 	private $children = [];
 
 	public function __construct($name, $gender)
@@ -38,12 +41,19 @@ class Member {
 
 	public function addChildren($members = array()){
 		foreach ($members as &$m) {
-			$this->children[] = $m;
 			if($this->gender == 'M'){
+				if(! $this->getSpouse()) throw Exception("Can not have children without spouse.");
+
+				$this->spouse->children[] = $m;
 				$m->father = $this;
+				$m->mother = $this->spouse;
 			}
-			else if($this->spouse){
+			else {
+				if(! $this->getSpouse()) throw Exception("Can not have children without spouse.");
+
+				$this->children[] = $m;
 				$m->father = $this->spouse;
+				$m->mother = $this;
 			}
 		}
 
@@ -51,7 +61,7 @@ class Member {
 	}
 
 	public function hasChildren(){
-		return count($this->children) > 0;
+		return count($this->getChildren()) > 0;
 	}
 
 	public function getMembers(){
@@ -61,7 +71,7 @@ class Member {
 			$members[] = $this->getSpouse();
 		}
 		if($this->hasChildren()){
-			foreach ($this->children as &$member) {
+			foreach ($this->getChildren() as &$member) {
 				$members = array_merge($members, $member->getMembers());
 			}
 
@@ -70,10 +80,18 @@ class Member {
 		return $members;
 	}
 
+	public function getChildren(){
+		if($this->gender == 'M' && $this->getSpouse() != null){
+			return $this->getSpouse()->children;
+		}
+
+		return $this->children;
+	}
+
 	public function findChildrenByGender($gender, $except = null){
 		$children = [];
 
-		foreach ($this->children as &$child) {
+		foreach ($this->getChildren() as &$child) {
 			if($child->gender == $gender){
 				if($except == null || $except != $child->name){
 					$children[] = $child;
