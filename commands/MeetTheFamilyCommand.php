@@ -21,7 +21,9 @@ class MeetTheFamilyCommand extends BaseCommand
         $members = static::$family->findByRelation($name, $relationship);
 
         if(is_array($members)){
-	        $output->writeln(implode(', ', $members));
+            if(count($members) > 0){
+    	        $output->writeln(implode(', ', $members));
+            }
         }
         else {
         	$output->writeln($members);
