@@ -4,7 +4,7 @@ use phpFastCache\CacheManager;
 use phpFastCache\Helper\Psr16Adapter;
 
 function dd($m){
-	dump($m);
+	exit(dump($m));
 }
 
 function storage(){

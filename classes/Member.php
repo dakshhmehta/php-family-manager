@@ -27,17 +27,8 @@ class Member {
 		$m = new Member($name, $g); // This is queen
 		$this->spouse = $m; // This is king, marrying to queen
 
-		/*if($m->getSpouse() == null){
-			$m->addSpouse($this); // So ofcourse, we have invert relation
-		}*/
-
 		return $this;
 	}
-
-	public function getSpouse(){
-		return $this->spouse;
-	}
-
 
 	public function addChildren($members){
 		if(! is_array($members)){
@@ -46,7 +37,7 @@ class Member {
 
 		foreach ($members as &$m) {
 			if($this->gender == 'M'){
-				if(! $this->getSpouse()) throw new Exception("Can not have children without spouse.");
+				if(! $this->spouse) throw new Exception("Can not have children without spouse.");
 
 				$this->spouse->children[] = $m;
 				$m->father = $this;
@@ -69,8 +60,8 @@ class Member {
 	public function getMembers(){
 		$members = [];
 		$members[] = $this;
-		if($this->getSpouse()){
-			$members[] = $this->getSpouse();
+		if($this->spouse){
+			$members[] = $this->spouse;
 		}
 		if($this->hasChildren()){
 			foreach ($this->getChildren() as &$member) {
@@ -83,8 +74,8 @@ class Member {
 	}
 
 	public function getChildren(){
-		if($this->gender == 'M' && $this->getSpouse() != null){
-			return $this->getSpouse()->children;
+		if($this->gender == 'M' && $this->spouse != null){
+			return $this->spouse->children;
 		}
 
 		return $this->children;
@@ -102,5 +93,25 @@ class Member {
 		}
 
 		return $children;
+	}
+
+	public function formatted(){
+		$output = $this->name."\n";
+		if($this->father){
+			$output .= "Father: ".$this->father->name."\n";
+		}
+		if($this->mother){
+			$output .= "Mother: ".$this->mother->name."\n";
+		}
+		$children = $this->getChildren();
+		$__children = [];
+		foreach ($children as &$child) {
+			$__children[] = $child->name;
+		}
+
+		$output .= "Children: ".implode(', ', $__children);
+		$output .= "\n======================================";
+
+		return $output;
 	}
 }
