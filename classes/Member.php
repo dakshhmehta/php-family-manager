@@ -72,7 +72,7 @@ class Member {
 
 		}
 
-		return $members;
+		return $this->filter($members);
 	}
 
 	public function exclude($name){
@@ -110,7 +110,7 @@ class Member {
 			}
 		}
 
-		return $children;
+		return $this->filter($children);
 	}
 
 	public function formatted(){
