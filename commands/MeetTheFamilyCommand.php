@@ -19,6 +19,12 @@ class MeetTheFamilyCommand extends BaseCommand
         $relationship = $this->ask('Enter a relationship: ');
 
         $members = static::$family->findByRelation($name, $relationship);
-        $output->writeln(implode(', ', $members));
+
+        if(is_array($members)){
+	        $output->writeln(implode(', ', $members));
+        }
+        else {
+        	$output->writeln($members);
+        }
     }
 }

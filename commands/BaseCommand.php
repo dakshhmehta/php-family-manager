@@ -33,7 +33,7 @@ class BaseCommand extends Command
 		]);
 		
 		static::$family = new Family($shan);
-		static::$family->dd();
+		//static::$family->dd();
 	}
 
 	protected function ask($question){

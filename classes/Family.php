@@ -24,24 +24,62 @@ class Family {
 		$relationship = strtolower($relationship);
 		$__members = [];
 
+		$member = $this->findByName($name);
+		if(! $member) throw new Exception("No member exists with the specified name.");
+		
+
 		switch ($relationship) {
+			case 'grand daughter':
+			case 'sisters':
+				if($member->mother != null)
+					$members = $member->mother->findChildrenByGender('F', $name);
+				else
+					$members = null;
+				break;
+
 			case 'brothers':
-				$members = $this->findByName($name)->mother->findChildrenByGender('M', $name);
-				foreach ($members as &$member) {
-					$__members[] = $member->name;
-				}
+				if($member->mother != null)
+					$members = $member->mother->findChildrenByGender('M', $name);
+				else
+					$members = null;
 				break;
 			
-			case 'sisters':
-				$members = $this->findByName($name)->mother->findChildrenByGender('F', $name);
-				foreach ($members as &$member) {
-					$__members[] = $member->name;
-				}
+			case 'daughter':
+				$members = $member->findChildrenByGender('F');				
+				break;
+
+			case 'son':
+				$members = $member->findChildrenByGender('M');
+				break;
+
+			case 'children':
+				$members = $member->getChildren();
+				break;
+
+			case 'mother':
+				$members = $member->mother;
+				break;
+
+			case 'father':
+				$members = $member->father;
+				break;
+
+			case 'cousins':
+				# code...
 				break;
 
 			default:
 				# code...
 				break;
+		}
+
+		if(is_array($members)){
+			foreach ($members as &$member) {
+				$__members[] = $member->name;
+			}
+		}
+		else {
+			$__members = $members->name;
 		}
 
 		return $__members;
