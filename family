@@ -3,16 +3,13 @@
 
 require __DIR__.'/vendor/autoload.php';
 
+function dd($m){
+	dump($m);
+}
+
 use Symfony\Component\Console\Application;
 
 $application = new Application();
-
-// Data feeding
-$family = new Family();
-$shan = new Member("King Shan", "M");
-$shan->addSpouse("Queen Anga");
-$family->addMember($shan);
-
-$application->add(new MeetTheFamilyCommand($family));
+$application->add(new MeetTheFamilyCommand());
 
 $application->run();

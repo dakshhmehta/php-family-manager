@@ -5,13 +5,6 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 class MeetTheFamilyCommand extends BaseCommand
 {
-	private $family;
-
-	public function __construct($family)
-	{
-		$this->family = $family;
-	}
-
     protected function configure()
     {
         $this->setName('meet');
@@ -20,7 +13,7 @@ class MeetTheFamilyCommand extends BaseCommand
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-    	static::setIO($input, $output);
+    	static::init($input, $output);
 
         $name = $this->ask('Enter a person name: ');
         $relatonship = $this->ask('Enter a relationship: ');

@@ -15,4 +15,8 @@ class Family {
 
 		return $this;
 	}
+
+	public function dd(){
+		dd($this->members);
+	}
 }

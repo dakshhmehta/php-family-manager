@@ -4,6 +4,7 @@ class Member {
 	private $name;
 	private $gender;
 	private $spouse;
+	private $children = [];
 
 	public function __construct($name, $gender)
 	{
@@ -19,10 +20,25 @@ class Member {
 
 	public function addSpouse($name){
 		$g = $this->invertGender($this->gender);
-
 		$m = new Member($name, $g); // This is queen
 		$this->spouse = $m; // This is king, marrying to queen
-		$m->addSpouse($this); // So ofcourse, we have invert relation
+
+		/*if($m->getSpouse() == null){
+			$m->addSpouse($this); // So ofcourse, we have invert relation
+		}*/
+
+		return $m;
+	}
+
+	public function getSpouse(){
+		return $this->spouse;
+	}
+
+
+	public function addChildren($members = array()){
+		foreach ($members as &$m) {
+			$this->children[] = $m;
+		}
 
 		return $this;
 	}
