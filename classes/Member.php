@@ -39,7 +39,11 @@ class Member {
 	}
 
 
-	public function addChildren($members = array()){
+	public function addChildren($members){
+		if(! is_array($members)){
+			$members = [$members];
+		}
+
 		foreach ($members as &$m) {
 			if($this->gender == 'M'){
 				if(! $this->getSpouse()) throw Exception("Can not have children without spouse.");

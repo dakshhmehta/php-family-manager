@@ -9,5 +9,6 @@ use Symfony\Component\Console\Application;
 $application = new Application();
 $application->add(new FeedFamilyCommand());
 $application->add(new MeetTheFamilyCommand());
+$application->add(new AddChildCommand());
 
 $application->run();

@@ -17,7 +17,7 @@ class Family {
 			}
 		}
 
-		return null;
+		throw new Exception("No member exists with the specified name.");
 	}
 
 	public function findByRelation($name, $relationship){
@@ -25,8 +25,6 @@ class Family {
 		$__members = [];
 
 		$member = $this->findByName($name);
-		if(! $member) throw new Exception("No member exists with the specified name.");
-		
 
 		switch ($relationship) {
 			case 'grand daughter':
