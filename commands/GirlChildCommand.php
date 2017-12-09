@@ -18,9 +18,6 @@ class GirlChildCommand extends BaseCommand
         $mothers = [];
         $count = 0;
         foreach (static::$family->getMembers('F') as &$member) {
-            dd($member);
-            if($member->spouse->mother == null) continue; // Its head family member
-
             $daughters = $member->findChildrenByGender('F');
             if(count($daughters) >= $count){
                 $mothers[] = $member->name;
