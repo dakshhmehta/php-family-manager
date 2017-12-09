@@ -1,0 +1,19 @@
+{
+    "name": "dakshhmehta/family",
+    "require": {
+        "symfony/console": "^3.0",
+        "symfony/var-dumper": "^3.4"
+    },
+    "authors": [
+        {
+            "name": "Daksh Mehta",
+            "email": "daksh@dristal.com"
+        }
+    ],
+    "autoload": {
+        "classmap": [
+            "commands/",
+            "classes/"
+        ]
+    }
+}
