@@ -17,12 +17,18 @@ class BaseCommand extends Command
 
 		// Data feeding
 		$ish = new Member("Ish", "M");
+		
 		$jata = (new Member("Jata", "M"));
 		$driya = (new Member("Driya", "F"))->addSpouse("Mnu");
 		$drita = (new Member("Drita", "M"))->addSpouse("Jaya")->addChildren([$jata, $driya]);
 		$vrita = new Member("Vrita", "M");
 		$chit = (new Member("Chit", "M"))->addSpouse("Ambi")->addChildren([$drita, $vrita]);
-		$vich = (new Member("Vich", "M"))->addSpouse("Lika");
+
+		$lavnya = (new Member("Lavnya", "F"))->addSpouse("Gru");
+		$vila = (new Member("Vila", "M"))->addSpouse("Jnki")->addChildren([$lavnya]);
+		$chika = (new Member("Chika", "F"))->addSpouse("Kpila");
+		$vich = (new Member("Vich", "M"))->addSpouse("Lika")->addChildren([$vila, $chika]);
+
 		$satya = (new Member("Satya", "F"))->addSpouse("Vyan");
 		
 		$shan = (new Member("King Shan", "M"))->addSpouse("Queen Anga")->addChildren([
