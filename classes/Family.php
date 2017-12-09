@@ -27,7 +27,6 @@ class Family {
 		$member = $this->findByName($name);
 
 		switch ($relationship) {
-			case 'grand daughter':
 			case 'sisters':
 				if($member->mother != null)
 					$members = $member->mother->findChildrenByGender('F', $name);
@@ -73,6 +72,12 @@ class Family {
 				$members = [];
 				foreach ($relatives as &$relative) {
 					$members = array_merge($relative->exclude($member->name)->getChildren(), $members);
+				}
+				break;
+
+			case 'brother-in-law':
+				if($member->gender == 'M'){
+
 				}
 				break;
 
