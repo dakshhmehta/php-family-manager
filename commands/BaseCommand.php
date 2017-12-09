@@ -16,24 +16,24 @@ class BaseCommand extends Command
 		static::$output = $output;
 
 		// Data feeding
-		static::$family = new Family();
-
 		$ish = new Member("Ish", "M");
-		$chit = (new Member("Chit", "M"))->addSpouse("Ambi");
+		$jata = (new Member("Jata", "M"));
+		$driya = (new Member("Driya", "F"))->addSpouse("Mnu");
+		$drita = (new Member("Drita", "M"))->addSpouse("Jaya")->addChildren([$jata, $driya]);
+		$vrita = new Member("Vrita", "M");
+		$chit = (new Member("Chit", "M"))->addSpouse("Ambi")->addChildren([$drita, $vrita]);
 		$vich = (new Member("Vich", "M"))->addSpouse("Lika");
 		$satya = (new Member("Satya", "F"))->addSpouse("Vyan");
 		
-		$shan = new Member("King Shan", "M");
-		$shan->addSpouse("Queen Anga");
-		$shan->addChildren([
+		$shan = (new Member("King Shan", "M"))->addSpouse("Queen Anga")->addChildren([
 			$ish,
 			$chit,
 			$vich,
 			$satya
 		]);
 		
-		static::$family->addMember($shan)
-		->dd();
+		static::$family = new Family($shan);
+		static::$family->dd();
 	}
 
 	protected function ask($question){

@@ -1,9 +1,10 @@
 <?php
 
 class Member {
-	private $name;
-	private $gender;
-	private $spouse;
+	public $name;
+	public $gender;
+	public $spouse;
+	public $father;
 	private $children = [];
 
 	public function __construct($name, $gender)
@@ -27,7 +28,7 @@ class Member {
 			$m->addSpouse($this); // So ofcourse, we have invert relation
 		}*/
 
-		return $m;
+		return $this;
 	}
 
 	public function getSpouse(){
@@ -38,8 +39,48 @@ class Member {
 	public function addChildren($members = array()){
 		foreach ($members as &$m) {
 			$this->children[] = $m;
+			if($this->gender == 'M'){
+				$m->father = $this;
+			}
+			else if($this->spouse){
+				$m->father = $this->spouse;
+			}
 		}
 
 		return $this;
+	}
+
+	public function hasChildren(){
+		return count($this->children) > 0;
+	}
+
+	public function getMembers(){
+		$members = [];
+		$members[] = $this;
+		if($this->getSpouse()){
+			$members[] = $this->getSpouse();
+		}
+		if($this->hasChildren()){
+			foreach ($this->children as &$member) {
+				$members = array_merge($members, $member->getMembers());
+			}
+
+		}
+
+		return $members;
+	}
+
+	public function findChildrenByGender($gender, $except = null){
+		$children = [];
+
+		foreach ($this->children as &$child) {
+			if($child->gender == $gender){
+				if($except == null || $except != $child->name){
+					$children[] = $child;
+				}
+			}
+		}
+
+		return $children;
 	}
 }

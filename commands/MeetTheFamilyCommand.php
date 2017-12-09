@@ -16,6 +16,9 @@ class MeetTheFamilyCommand extends BaseCommand
     	static::init($input, $output);
 
         $name = $this->ask('Enter a person name: ');
-        $relatonship = $this->ask('Enter a relationship: ');
+        $relationship = $this->ask('Enter a relationship: ');
+
+        $members = static::$family->findByRelation($name, $relationship);
+        $output->writeln(implode(', ', $members));
     }
 }
