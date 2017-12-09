@@ -10,6 +10,8 @@ class Member {
 
 	private $children = [];
 
+	private $excludes = [];
+
 	public function __construct($name, $gender)
 	{
 		$this->name = $name;
@@ -73,12 +75,28 @@ class Member {
 		return $members;
 	}
 
-	public function getChildren(){
-		if($this->gender == 'M' && $this->spouse != null){
-			return $this->spouse->children;
+	public function exclude($name){
+		$this->excludes[] = $name;
+
+		return $this;
+	}
+
+	public function filter($members){
+		foreach ($members as $i => $member) {
+			if(in_array($member->name, $this->excludes)){
+				array_splice($members, $i, 1);
+			}
 		}
 
-		return $this->children;
+		return $members;
+	}
+
+	public function getChildren(){
+		if($this->gender == 'M' && $this->spouse != null){
+			return $this->filter($this->spouse->children);
+		}
+
+		return $this->filter($this->children);
 	}
 
 	public function findChildrenByGender($gender, $except = null){

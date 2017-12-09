@@ -63,7 +63,17 @@ class Family {
 				break;
 
 			case 'cousins':
-				
+				try {
+					$relatives = $member->father->father->getChildren();
+				}
+				catch(Exception $e){
+					$relatives = [];
+				}
+
+				$members = [];
+				foreach ($relatives as &$relative) {
+					$members = array_merge($relative->exclude($member->name)->getChildren(), $members);
+				}
 				break;
 
 			default:
