@@ -86,7 +86,7 @@ class Family {
 	}
 
 	public function save(){
-		return cache()->set('family', $this);
+		return storage()->set('family', $this);
 	}
 
 	public function dd(){

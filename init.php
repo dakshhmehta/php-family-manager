@@ -7,7 +7,7 @@ function dd($m){
 	dump($m);
 }
 
-function cache(){
+function storage(){
 	$config = [
 		'path' => __DIR__.'/cache',
 	];

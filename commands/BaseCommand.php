@@ -15,7 +15,7 @@ class BaseCommand extends Command
 		static::$input = $input;
 		static::$output = $output;
 
-		static::$family = cache()->get('family');
+		static::$family = storage()->get('family');
 	}
 
 	protected function ask($question){
