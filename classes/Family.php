@@ -85,6 +85,10 @@ class Family {
 		return $__members;
 	}
 
+	public function save(){
+		return cache()->set('family', $this);
+	}
+
 	public function dd(){
 		dd($this->members);
 	}

@@ -2,14 +2,12 @@
 <?php
 
 require __DIR__.'/vendor/autoload.php';
-
-function dd($m){
-	dump($m);
-}
+require __DIR__.'/init.php';
 
 use Symfony\Component\Console\Application;
 
 $application = new Application();
+$application->add(new FeedFamilyCommand());
 $application->add(new MeetTheFamilyCommand());
 
 $application->run();
