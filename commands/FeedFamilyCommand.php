@@ -45,6 +45,7 @@ class FeedFamilyCommand extends BaseCommand
         
         static::$family = new Family($shan);
         static::$family->save();
+        static::$family->dd();
 
     	$output->writeln('Family has been seeded.');
     }

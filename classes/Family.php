@@ -99,7 +99,10 @@ class Family {
 	}
 
 	public function save(){
-		return storage()->set('family', $this);
+		$this->members = $this->head->getMembers();
+		$saved = storage()->set('family', $this);
+
+		return $saved;
 	}
 
 	public function getMembers($gender = null)

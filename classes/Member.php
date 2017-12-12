@@ -28,6 +28,7 @@ class Member {
 		$g = $this->invertGender($this->gender);
 		$m = new Member($name, $g); // This is queen
 		$this->spouse = $m; // This is king, marrying to queen
+		$m->spouse = $this;
 
 		return $this;
 	}
