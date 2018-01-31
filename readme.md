@@ -1,3 +1,5 @@
+[![CircleCI](https://circleci.com/gh/dakshhmehta/php-family-manager.svg?style=svg)](https://circleci.com/gh/dakshhmehta/php-family-manager)
+
 The application has been developed with Symfony console application and requires minimum of PHP7.0 version.
 
 To start with, run php family command.
